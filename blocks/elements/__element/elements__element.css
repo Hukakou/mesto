@@ -1,0 +1,14 @@
+.elements__element {
+    padding: 0;
+    margin: 0;
+    max-height: 361px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+@media screen and (max-width: 920px) {
+    .elements__element {
+        max-height: auto;
+    }
+}
