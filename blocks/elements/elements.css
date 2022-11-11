@@ -11,9 +11,6 @@
 @media screen and (max-width: 920px) {
     .elements {
         grid-template-columns: repeat(2, 1fr);
-        text-align: center;
-        align-items: center;
-        justify-content: center;
         max-width: 584px;
     }
 }

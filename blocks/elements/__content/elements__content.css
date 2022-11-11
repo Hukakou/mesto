@@ -7,6 +7,6 @@
     flex-direction: row;
     justify-content: space-between;
     border-radius: 0 0 10px 10px;
-    height: 79px;
+    min-height: 79px;
     max-width: 282px;
 }
