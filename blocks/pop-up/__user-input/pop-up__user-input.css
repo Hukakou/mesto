@@ -16,3 +16,7 @@
         width: 238px;
     }
 }
+
+.pop-up__user-input:first-child{
+    margin-bottom: 30px;
+}
