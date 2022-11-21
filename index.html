@@ -42,108 +42,45 @@
           ></button>
         </section>
 
-        <section class="elements">
+        <!-- <div class="elements"></div> -->
+
+        <template id="elements" class="elements">
           <div class="elements__element">
             <img
               src="./images/Карачаевск.jpg"
-              alt="Карачаевск"
+              alt="Картинка не добавлена"
               class="elements__mask-group"
             />
             <div class="elements__content">
-              <h2 class="elements__element-text">Карачаевск</h2>
+              <h2 class="elements__element-text"></h2>
               <button
                 class="elements__group"
                 type="button"
                 aria-label="Лайу"
               ></button>
             </div>
+            <button
+              type="button"
+              aria-label="Мусорка"
+              class="elements__trash"
+            ></button>
           </div>
-          <div class="elements__element">
-            <img
-              src="./images/Гора_Эльбрус.jpg"
-              alt="Гора Эльбрус"
-              class="elements__mask-group"
-            />
-            <div class="elements__content">
-              <h2 class="elements__element-text">Гора Эльбрус</h2>
-              <button
-                class="elements__group"
-                type="button"
-                aria-label="Лайу"
-              ></button>
-            </div>
-          </div>
-          <div class="elements__element">
-            <img
-              src="./images/Домбай.jpg"
-              alt="Домбай"
-              class="elements__mask-group"
-            />
-            <div class="elements__content">
-              <h2 class="elements__element-text">Домбай</h2>
-              <button
-                class="elements__group"
-                type="button"
-                aria-label="Лайу"
-              ></button>
-            </div>
-          </div>
-          <div class="elements__element">
-            <img
-              src="./images/Гора_Эльбрус.jpg"
-              alt="Гора Эльбрус"
-              class="elements__mask-group"
-            />
-            <div class="elements__content">
-              <h2 class="elements__element-text">Гора Эльбрус</h2>
-              <button
-                class="elements__group"
-                type="button"
-                aria-label="Лайу"
-              ></button>
-            </div>
-          </div>
-          <div class="elements__element">
-            <img
-              src="./images/Домбай.jpg"
-              alt="Домбай"
-              class="elements__mask-group"
-            />
-            <div class="elements__content">
-              <h2 class="elements__element-text">Домбай</h2>
-              <button
-                class="elements__group"
-                type="button"
-                aria-label="Лайу"
-              ></button>
-            </div>
-          </div>
-          <div class="elements__element">
-            <img
-              src="./images/Карачаевск.jpg"
-              alt="Карачаево-Черкессия"
-              class="elements__mask-group"
-            />
-            <div class="elements__content">
-              <h2 class="elements__element-text">Карачаево-Черкессия</h2>
-              <button
-                class="elements__group"
-                type="button"
-                aria-label="Лайу"
-              ></button>
-            </div>
-          </div>
-        </section>
+        </template>
       </main>
 
       <footer class="footer">
         <p class="footer__text">© 2020 Mesto Russia</p>
       </footer>
 
-      <div class="pop-up">
+      <div class="pop-up popup-profile">
         <div class="pop-up__container">
           <h2 class="pop-up__title">Редактировать профиль</h2>
-          <form class="pop-up__form" method="get" action="#" name="userInfo">
+          <form
+            class="pop-up__form pop-up__form-profile"
+            method="get"
+            action="#"
+            name="userInfo"
+          >
             <input
               type="text"
               class="pop-up__user-input pop-up__user-input_info_name"
@@ -157,10 +94,50 @@
             <button class="pop-up__save" type="submit">Сохранить</button>
           </form>
           <button
-            class="pop-up__exit"
+            class="pop-up__exit pop-up__exit-profile"
             type="button"
             aria-label="выход"
           ></button>
+        </div>
+      </div>
+
+      <div class="pop-up popup-card">
+        <div class="pop-up__container">
+          <h2 class="pop-up__title">Новое место</h2>
+          <form
+            class="pop-up__form pop-up__form-card"
+            method="get"
+            action="#"
+            name="userInfo"
+          >
+            <input
+              type="text"
+              class="pop-up__user-input pop-up__user-input_card_name"
+              value="Название"
+            />
+            <input
+              type="text"
+              class="pop-up__user-input pop-up__user-input_card_link"
+              value="Ссылка на картинку"
+            />
+            <button class="pop-up__save" type="submit">Сохранить</button>
+          </form>
+          <button
+            class="pop-up__exit pop-up__exit-card"
+            type="button"
+            aria-label="выход"
+          ></button>
+        </div>
+      </div>
+      <div class="pop-up popup-img">
+        <div class="pop-up__img-container">
+          <img src="#" alt="нет изображения" class="pop-up__card-img" />
+          <button
+            class="pop-up__exit pop-up__exit-img"
+            type="button"
+            aria-label="выход"
+          ></button>
+          <p class="pop-up__img-info"></p>
         </div>
       </div>
     </div>
