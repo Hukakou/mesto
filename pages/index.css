@@ -30,8 +30,6 @@
 @import url(../blocks/pop-up/__user-input/pop-up__user-input.css);
 @import url(../blocks/pop-up/__save/pop-up__save.css);
 @import url(../blocks/pop-up/__exit/pop-up__exit.css);
-@import url(../blocks/pop-up/__user-input/_info/pop-up__user-input_info_job.css);
-@import url(../blocks/pop-up/__user-input/_info/pop-up__user-input_info_name.css);
 @import url(../blocks/pop-up/__img-container/pop-up__img-container.css);
 @import url(../blocks/pop-up/__card-img/pop-up__card-img.css);
 @import url(../blocks/pop-up/__img-info/pop-up__img-info.css);

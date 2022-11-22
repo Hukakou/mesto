@@ -19,126 +19,144 @@ const formElementCard = popupCard.querySelector('.pop-up__form-card');
 //popups form inputs
 const nameInput = document.querySelector('.pop-up__user-input_info_name');
 const jobInput = document.querySelector('.pop-up__user-input_info_job');
+const cardName = document.querySelector('.pop-up__user-input_card_name');
+const cardLink = document.querySelector('.pop-up__user-input_card_link');
 
 // profile information
 const nameProfile = document.querySelector('.profile__name-profile');
 const jobProfile = document.querySelector('.profile__subname-profile');
 
 // element card
-const cardElement = document.querySelector('.elements');
+const cardSection = document.querySelector('.elements');
+
+// element cadr img
+const img = popupImages.querySelector('.pop-up__card-img');
+const imgInfo = popupImages.querySelector('.pop-up__img-info');
+
+
+// создать карточку
+function createCard(cardNameValue, cardLinkValue) {
+  const duplicationCards = cardSection.content.querySelector('.elements__element').cloneNode(true);
+  const nameCard = duplicationCards.querySelector('.elements__element-text');
+  const imgCard = duplicationCards.querySelector('.elements__mask-group');
+
+  nameCard.textContent = cardNameValue;
+  imgCard.alt = cardNameValue;
+  imgCard.src = cardLinkValue;
+
+  setElementListeners(duplicationCards);
+  
+  return duplicationCards;
+}
 
 function addCard(cardNameValue, cardLinkValue) {
+  const clonElementCard = createCard(cardNameValue, cardLinkValue);
     
-    const clonElementCard = cardElement.content.querySelector('.elements__element').cloneNode(true);
-
-    clonElementCard.querySelector('.elements__element-text').textContent = cardNameValue;
-    clonElementCard.querySelector('.elements__mask-group').src = cardLinkValue;
-    clonElementCard.querySelector('.elements__mask-group').alt = cardNameValue;
-    cardElement.prepend(clonElementCard);
-
-    setElementListeners(clonElementCard);
-
-    return clonElementCard;
+  cardSection.prepend(clonElementCard);
 }
 
 // submit карточек
 formElementCard.addEventListener('submit', function (event) {
     event.preventDefault();
-    const cardName = document.querySelector('.pop-up__user-input_card_name');
-    const cardLink = document.querySelector('.pop-up__user-input_card_link');
 
     addCard(cardName.value, cardLink.value);
 
-    togglePopup(popupCard);
+    closePopup(popupCard);
 
     formElementCard.reset();
 });
 
 // удаление карточки
-const deleteHander = (event) => {
+const deleteCard = (event) => {
     const target = event.target;
     const currentListCard = target.closest('.elements__element');
     currentListCard.remove();
 }
 
 // лайк карточки
-const likeHander = (event) => {
+const addLikeCard = (event) => {
     const target = event.target;
     target.classList.toggle('elements__group_active');
 }
 
 // развернуть карточку
-const openImgHander = (event) => {
+const openImgCard = (event) => {
     const target = event.target;
-    const img = popupImages.querySelector('.pop-up__card-img');
-    const imgInfo = popupImages.querySelector('.pop-up__img-info');
-    const cardImgInfo = target.parentElement.children[1].children[0].textContent;
-    imgInfo.textContent = cardImgInfo;
+    imgInfo.textContent = target.alt || 'Название отсутствует';
     img.src = target.src;
-    popupImages.classList.add('pop-up_active');
+    img.alt = target.alt || 'Изображение не загруженно';
+  
+    openPopup(popupImages);
 }
 
 // слушатель элементов карточки
 const setElementListeners = (clonElementCard) => {
     const elementDel = clonElementCard.querySelector('.elements__trash'); 
 
-    elementDel.addEventListener('click', deleteHander);
+    elementDel.addEventListener('click', deleteCard);
 
     const elementLike = clonElementCard.querySelector('.elements__group'); 
 
-    elementLike.addEventListener('click', likeHander);
+    elementLike.addEventListener('click', addLikeCard);
 
-    const elementOpenImg = clonElementCard.querySelector('.elements__mask-group'); 
+    const openPopupImage = clonElementCard.querySelector('.elements__mask-group'); 
     
-    elementOpenImg.addEventListener('click', openImgHander);
+    openPopupImage.addEventListener('click', openImgCard);
 }
 
 // popups open/close logics
-const togglePopup = (popup) => {
-    popup.classList.toggle('pop-up_active');
+const openPopup = (popup) => {
+  popup.classList.add('pop-up_active');
+}
+
+const closePopup = (popup) => {
+    popup.classList.remove('pop-up_active');
 }
 
 openPopupProfile.addEventListener('click', () => {
-    togglePopup(popupProfile);
+    nameInput.value = nameProfile.textContent;
+    jobInput.value = jobProfile.textContent;
+    openPopup(popupProfile);
 })
 
 openPopupCard.addEventListener('click', () => {
-    togglePopup(popupCard)
+  openPopup(popupCard);
 })
 
 closePopupProfile.addEventListener('click', () => {
-    togglePopup(popupProfile);
+  closePopup(popupProfile);
 })
 
 closePopupCard.addEventListener('click', () => {
-    togglePopup(popupCard)
+  closePopup(popupCard);
+  formElementCard.reset();
 })
 
 closePopupImage.addEventListener('click', () => {
-    togglePopup(popupImages)
+  closePopup(popupImages);
 })
-  
+
+// Код для следующего спринта
 // const closePopUpByClickOnOverlay = function (event) {
 //     if (event.target !== event.currentTarget) {
 //         return;
 //     }
-//     togglePopup(popupProfile);
+//     closePopup(popupProfile);
 //     formElementProfole.reset();
 // }
 
 // submit информации пользователя
-function formSubmitHandler(event) {
+function handleProfileFormSubmit(event) {
     event.preventDefault();
     nameProfile.textContent = nameInput.value;
     jobProfile.textContent = jobInput.value;
-    togglePopup(popupProfile);
-    formElementProfole.reset();
+    closePopup(popupProfile);
 }
 
 // popupProfile.addEventListener('click', closePopUpByClickOnOverlay);
 // popupCard.addEventListener('click', closePopUpByClickOnOverlay);
 // popupImages.addEventListener('click', closePopUpByClickOnOverlay);
-formElementProfole.addEventListener('submit', formSubmitHandler);
+formElementProfole.addEventListener('submit', handleProfileFormSubmit);
 
 
 
