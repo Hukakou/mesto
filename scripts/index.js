@@ -129,7 +129,6 @@ closePopupProfile.addEventListener('click', () => {
 
 closePopupCard.addEventListener('click', () => {
   closePopup(popupCard);
-  formElementCard.reset();
 })
 
 closePopupImage.addEventListener('click', () => {
