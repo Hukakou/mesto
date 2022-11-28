@@ -124,9 +124,17 @@ openPopupProfile.addEventListener('click', () => {
     openPopup(popupProfile);
 })
 
-openPopupCard.addEventListener('click', () => {
+openPopupCard.addEventListener('click', (evt) => {
   openPopup(popupCard);
+  disableButton(settings);
 })
+
+// Деактивация кнопки
+const disableButton = ({ inactiveButtonClass }) => {
+  const btnCard = document.querySelector('#button-card');
+  btnCard.setAttribute('disabled', true);
+  btnCard.classList.add(inactiveButtonClass);
+}
 
 // *Магия* Закрытие попапов через оверлей, либо крестик
  const popups = document.querySelectorAll('.pop-up')
