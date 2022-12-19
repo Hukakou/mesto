@@ -1,7 +1,6 @@
 // popups
 const popupProfile = document.querySelector('.popup-profile');
 const popupCard = document.querySelector('.popup-card');
-const popupImages = document.querySelector('.popup-img');
 
 // popups open button
 const openPopupProfile = document.querySelector('.profile__edit-button');
@@ -21,83 +20,8 @@ const cardLink = document.querySelector('.pop-up__user-input_card_link');
 const nameProfile = document.querySelector('.profile__name-profile');
 const jobProfile = document.querySelector('.profile__subname-profile');
 
-// element card
+//element card
 const cardSection = document.querySelector('.elements');
-
-// element cadr img
-const img = popupImages.querySelector('.pop-up__card-img');
-const imgInfo = popupImages.querySelector('.pop-up__img-info');
-
-
-// создать карточку
-function createCard(cardNameValue, cardLinkValue) {
-  const duplicationCards = cardSection.content.querySelector('.elements__element').cloneNode(true);
-  const nameCard = duplicationCards.querySelector('.elements__element-text');
-  const imgCard = duplicationCards.querySelector('.elements__mask-group');
-
-  nameCard.textContent = cardNameValue;
-  imgCard.alt = cardNameValue;
-  imgCard.src = cardLinkValue;
-
-  setElementListeners(duplicationCards);
-  
-  return duplicationCards;
-}
-
-function addCard(cardNameValue, cardLinkValue) {
-  const clonElementCard = createCard(cardNameValue, cardLinkValue);
-    
-  cardSection.prepend(clonElementCard);
-}
-
-// submit карточек
-formElementCard.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    addCard(cardName.value, cardLink.value);
-
-    closePopup(popupCard);
-
-  formElementCard.reset();
-});
-
-// удаление карточки
-const deleteCard = (event) => {
-    const target = event.target;
-    const currentListCard = target.closest('.elements__element');
-    currentListCard.remove();
-}
-
-// лайк карточки
-const addLikeCard = (event) => {
-    const target = event.target;
-    target.classList.toggle('elements__group_active');
-}
-
-// развернуть карточку
-const openImgCard = (event) => {
-    const target = event.target;
-    imgInfo.textContent = target.alt || 'Название отсутствует';
-    img.src = target.src;
-    img.alt = target.alt || 'Изображение не загруженно';
-  
-    openPopup(popupImages);
-}
-
-// слушатель элементов карточки
-const setElementListeners = (clonElementCard) => {
-    const elementDel = clonElementCard.querySelector('.elements__trash'); 
-
-    elementDel.addEventListener('click', deleteCard);
-
-    const elementLike = clonElementCard.querySelector('.elements__group'); 
-
-    elementLike.addEventListener('click', addLikeCard);
-
-    const openPopupImage = clonElementCard.querySelector('.elements__mask-group'); 
-    
-    openPopupImage.addEventListener('click', openImgCard);
-}
 
 // Открытие и закрытие попапа через escape
 function closeByEscape(evt) {
@@ -124,7 +48,7 @@ openPopupProfile.addEventListener('click', () => {
     openPopup(popupProfile);
 })
 
-openPopupCard.addEventListener('click', (evt) => {
+openPopupCard.addEventListener('click', () => {
   openPopup(popupCard);
   disableButton(settings);
 })
@@ -188,8 +112,43 @@ const initialCards = [
   }
 ]; 
 
+
+//Class Card
+const template = document.querySelector('.elements').content;
+
+import { Card } from "./Card.js";
+
 initialCards.forEach((el) => {
-    addCard(el.name, el.link);
+    const card = new Card(el.name, el.link, template, closeByEscape);
+    card.addCard(cardSection);
 })
 
-enableValidation(settings);
+formElementCard.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const card = new Card(cardName.value, cardLink.value, template, closeByEscape);
+    card.addCard(cardSection);
+
+    closePopup(popupCard);
+
+  formElementCard.reset();
+});
+
+//Class FormValidator
+import { FormValidator } from "./FormValidator.js";
+
+const settings = {
+    formSelector: '.form',
+    inputSelector: '.form__input',
+    labelSelector: '.form__section',
+    submitButtonSelector: '.form__button',
+    inactiveButtonClass: 'form__button_disabled',
+    inputErrorClass: '.form__input-error',
+    errorClass: 'form__input-error_active',
+}
+
+const formList = document.querySelectorAll('.form');
+formList.forEach(formElement => {
+    const formValidator = new FormValidator(settings, formElement);
+    formValidator.enableValidation();
+    })
