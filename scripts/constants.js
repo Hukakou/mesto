@@ -28,19 +28,25 @@ export const popupImages = document.querySelector('.popup-img');
 export const img = popupImages.querySelector('.pop-up__card-img');
 export const imgInfo = popupImages.querySelector('.pop-up__img-info');
 
+//Class Card
+export const cardTemplate = document.querySelector('.elements').content;
+
 //Элемент валидации
-export const formList = document.querySelectorAll('.form');
+// export const formList = document.querySelectorAll('.form');
 export const btnCard = document.querySelector('#button-card');
+export const cardForm = document.querySelector('.pop-up__form-card');
+export const profileForm = document.querySelector('.pop-up__form-profile');
 
 export const validationConfig = {
-    formSelector: '.form',
-    inputSelector: '.form__input',
-    labelSelector: '.form__section',
-    submitButtonSelector: '.form__button',
-    inactiveButtonClass: 'form__button_disabled',
-    inputErrorClass: '.form__input-error',
-    errorClass: 'form__input-error_active',
-}
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  labelSelector: '.form__section',
+  submitButtonSelector: '.form__button',
+  inactiveButtonClass: 'form__button_disabled',
+  inputErrorClass: '.form__input-error',
+  errorClass: 'form__input-error_active',
+  popupInputErrorClass: 'pop-up__input-error',
+};
 
 // Добавили начальный контент
 export const initialCards = [

@@ -7,59 +7,64 @@ export class FormValidator {
         this._inactiveButtonClass = validationConfig.inactiveButtonClass;
         this._inputErrorClass = validationConfig.inputErrorClass;
         this._errorClass = validationConfig.errorClass;
+        this._popupInputErrorClass = validationConfig.popupInputErrorClass;
         this._formElement = formElement;
      };
 
     _checkInputValidity = (inputElement) => {
-        const isValid = inputElement.validity.valid;
-        const form = inputElement.closest(this._labelSelector);
-        const errorElement = form.querySelector(this._inputErrorClass);
-        if (isValid) {
-            this._hideInputError(errorElement);
+        this._isValid = inputElement.validity.valid;
+        this._form = inputElement.closest(this._labelSelector);
+        this._inputError = this._form.querySelector(this._inputSelector);
+        this._errorElement = this._form.querySelector(this._inputErrorClass);
+        if (this._isValid) {
+            this._hideInputError();
         } else {
-            this._showInputError(errorElement, inputElement.validationMessage);
+            this._showInputError(inputElement.validationMessage);
         }
     };
 
-    _showInputError = (errorElement, errorMessage) => {
-        errorElement.textContent = errorMessage;
-        errorElement.classList.add(this._errorClass);
+    _showInputError = (errorMessage) => {
+        this._errorElement.textContent = errorMessage;
+        this._errorElement.classList.add(this._errorClass);
+        this._inputError.classList.add(this._popupInputErrorClass);
     };
 
-    _hideInputError = (errorElement, errorMessage) => {
-        errorElement.textContent = errorMessage;
-        errorElement.classList.remove(this._errorClass);
+    _hideInputError = (errorMessage) => {
+        this._errorElement.textContent = errorMessage;
+        this._errorElement.classList.remove(this._errorClass);
+        this._inputError.classList.remove(this._popupInputErrorClass);
     };
 
-    _toggleButtonState = (inputList, buttonElement) => {
-        const hasNotValidInput = inputList.some(inputElement => !inputElement.validity.valid);
-        if (hasNotValidInput) {
-            this.disableSubmitButton(buttonElement);
+    _toggleButtonState = () => {
+        this._hasNotValidInput = this._inputList.some(inputElement => !inputElement.validity.valid);
+        if (this._hasNotValidInput) {
+            this._disableSubmitButton();
         }
         else {
-            buttonElement.removeAttribute('disabled');
-            buttonElement.classList.remove(this._inactiveButtonClass);
+            this._buttonElement.removeAttribute('disabled');
+            this._buttonElement.classList.remove(this._inactiveButtonClass);
         }
     };
 
-    disableSubmitButton = (buttonElement) => {
-        buttonElement.setAttribute('disabled', true);
-        buttonElement.classList.add(this._inactiveButtonClass);
-
+    _disableSubmitButton = () => {
+        this._buttonElement.setAttribute('disabled', true);
+        this._buttonElement.classList.add(this._inactiveButtonClass);
     };
 
+    disableSubmitButtonPublic = () => { this._disableSubmitButton() };
+
     enableValidation = () => {
-        const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-        const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+        this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+        this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
 
-        this._toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState();
 
-        this.disableSubmitButton(buttonElement);
+        this._disableSubmitButton();
 
-        inputList.forEach(inputElement => {
+        this._inputList.forEach(inputElement => {
             inputElement.addEventListener('input', () => {
                 this._checkInputValidity(inputElement);
-                this._toggleButtonState(inputList, buttonElement);
+                this._toggleButtonState();
             })
         })
     };
