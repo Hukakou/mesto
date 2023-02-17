@@ -1,19 +1,19 @@
 export class Card {
-    constructor(cardNameValue, cardLinkValue, cardTemplate, openImagePopup) {
-        this._cardNameValue = cardNameValue;
-        this._cardLinkValue = cardLinkValue;
+    constructor( data , cardTemplate, openImagePopup) {
+        this._cardNameValue = data.name;
+        this._cardLinkValue = data.link;
         this._cardTemplate = cardTemplate;
         this._openImagePopup = openImagePopup;
     };
 
-    getCardElement = () => {
+    getCardElement() {
         this._createCard();
         this._setElementListeners();
         this._visualPartCard = this._view;
         return this._visualPartCard;
     };
 
-    _createCard = () => {
+    _createCard() {
         this._view = this._cardTemplate.cloneNode(true).children[0];
         this.cardImg = this._view.querySelector('.elements__mask-group');
         this.cardText = this._view.querySelector('.elements__element-text');
@@ -23,7 +23,7 @@ export class Card {
         this.cardText.textContent = this._cardNameValue;
     };
 
-    _setElementListeners = () => {
+    _setElementListeners() {
         const elementDel = this._view.querySelector('.elements__trash');
         elementDel.addEventListener('click', () => this._view.remove());
 
@@ -33,7 +33,9 @@ export class Card {
         });
 
         const openPopupImage = this._view.querySelector('.elements__mask-group');
-        openPopupImage.addEventListener('click', () => this._openImagePopup(this._cardNameValue, this._cardLinkValue)
+        openPopupImage.addEventListener('click', () => {
+            this._openImagePopup(this._cardNameValue, this._cardLinkValue);
+        }
         );
     };
     

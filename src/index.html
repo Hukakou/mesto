@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css" />
+    <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
   </head>
 
   <body>
     <div class="page">
       <header class="header">
         <img
-          src="./images/header-img.svg"
+          src="<%=require('./images/header-img.svg')%>"
           alt="Логотип Место"
           class="header__logo"
         />
@@ -21,7 +21,7 @@
         <section class="profile">
           <div class="profile__card">
             <img
-              src="./images/profile-avatar.jpg"
+              src="<%=require('./images/profile-avatar.jpg')%>"
               alt="Аватар профиля"
               class="profile__avatar"
             />
@@ -82,9 +82,10 @@
           >
             <label class="form__section">
               <input
+                name="name"
                 type="text"
                 class="form__input pop-up__user-input pop-up__user-input_info_name"
-                value="Жак-Ив Кусто"
+                value=""
                 required
                 minlength="2"
                 maxlength="40"
@@ -93,9 +94,10 @@
             </label>
             <label class="form__section">
               <input
+                name="job"
                 type="text"
                 class="form__input pop-up__user-input pop-up__user-input_info_job"
-                value="Исследователь океана"
+                value=""
                 required
                 minlength="2"
                 maxlength="200"
@@ -126,6 +128,7 @@
           >
             <label class="form__section">
               <input
+                name="name"
                 type="text"
                 class="form__input pop-up__user-input pop-up__user-input_card_name"
                 placeholder="Название"
@@ -137,6 +140,7 @@
             </label>
             <label class="form__section">
               <input
+                name="link"
                 type="url"
                 class="form__input pop-up__user-input pop-up__user-input_card_link"
                 placeholder="Ссылка на картинку"
@@ -172,10 +176,14 @@
         </div>
       </div>
     </div>
-    <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/Card.js"></script>
-    <script type="module" src="./scripts/FormValidator.js"></script>
-    <script type="module" src="./scripts/utils.js"></script>
-    <script type="module" src="./scripts/constants.js"></script>
+    <script type="module" src="./pages/index.js"></script>
+    <script type="module" src="./components/Card.js"></script>
+    <script type="module" src="./components/FormValidator.js"></script>
+    <script type="module" src="./components/constants.js"></script>
+    <script type="module" src="./components/Section.js"></script>
+    <script type="module" src="./components/Popup.js"></script>
+    <script type="module" src="./components/PopupWithImage.js"></script>
+    <script type="module" src="./components/PopupWithForm.js"></script>
+    <script type="module" src="./components/UserInfo.js"></script>
   </body>
 </html>

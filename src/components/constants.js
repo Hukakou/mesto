@@ -23,10 +23,12 @@ export const jobProfile = document.querySelector('.profile__subname-profile');
 // element card
 export const cardsSection = document.querySelector('.elements');
 
-// Элементы карты
-export const popupImages = document.querySelector('.popup-img');
-export const img = popupImages.querySelector('.pop-up__card-img');
-export const imgInfo = popupImages.querySelector('.pop-up__img-info');
+// Элементы карты 
+export const popupCardImageSelectors = {
+  popupImages : document.querySelector('.popup-img'),
+  img : '.pop-up__card-img',
+  imgInfo : '.pop-up__img-info',
+}
 
 //Class Card
 export const cardTemplate = document.querySelector('.elements').content;

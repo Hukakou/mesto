@@ -26,10 +26,14 @@ _<br>_
    _<br>_
 
    * ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+   _<br>_
+   _<br>_
+
+   * ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
 
 **Дальнейшее развитие проекта**
 
-Подключение к серверу.
+Подключение к API.
 
 <br>
 
