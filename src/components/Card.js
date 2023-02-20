@@ -32,8 +32,7 @@ export class Card {
             elementLike.classList.toggle('elements__group_active');
         });
 
-        const openPopupImage = this._view.querySelector('.elements__mask-group');
-        openPopupImage.addEventListener('click', () => {
+        this.cardImg.addEventListener('click', () => {
             this._openImagePopup(this._cardNameValue, this._cardLinkValue);
         }
         );

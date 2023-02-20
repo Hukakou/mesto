@@ -1,5 +1,5 @@
 //import elementstemplate
-import { popupCard, popupProfile, nameProfile, openPopupProfile, jobProfile, nameInput, jobInput, validationConfig, initialCards, cardForm, profileForm, cardsSection, cardTemplate, openPopupCard, popupCardImageSelectors } from '../components/constants.js';
+import { popupCard, popupProfile, nameProfile, openPopupProfile, jobProfile, nameInput, jobInput, validationConfig, initialCards, cardForm, profileForm, cardsSection, cardTemplate, openPopupCard, popupCardImageSelectors } from '../utils/constants.js';
 import { FormValidator } from "../components/FormValidator.js";
 import { Card } from '../components/Card.js';
 import { Section } from '../components/Section.js';
@@ -19,6 +19,7 @@ profileFormValidator.enableValidation();
 const popupWithImage = new PopupWithImage(popupCardImageSelectors);
 function openPopupImage(name, link) {
     popupWithImage.openPopup(name, link);
+    popupWithImage.setEventListeners();
 }
 
 // Класс Card
@@ -38,8 +39,11 @@ function addCard(data) {
 
 // Класс PopupWithForm
 const popupEditProfile = new PopupWithForm(popupProfile, submitEditProfile);
+popupEditProfile.setEventListeners();
+
 const popupAddCard = new PopupWithForm(popupCard, addCard);
-function addPostCard() {
+popupAddCard.setEventListeners();
+function openCardPopup() {
     popupAddCard.openPopup();
 }
 
@@ -57,16 +61,11 @@ function submitEditProfile(data) {
     userInfo.setUserInfo(data);
 }
 
-// Рендер карточки
-export function renderCards(visualPartCard) {
-    cardsSection.prepend(visualPartCard);
-};
-
 //Открытие формы юзера
 openPopupProfile.addEventListener('click', openPopupEditProfile);
 
 //дезактивация кнопки отправки формы создания карточки
 openPopupCard.addEventListener('click', () => {
-    addPostCard();
+    openCardPopup();
     cardFormValidator.disableSubmitButtonPublic();
 });

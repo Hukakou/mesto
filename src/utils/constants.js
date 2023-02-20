@@ -1,14 +1,14 @@
 // popups
-export const popupProfile = document.querySelector('.popup-profile');
-export const popupCard = document.querySelector('.popup-card');
+export const popupProfile = '.popup-profile';
+export const popupCard = '.popup-card';
 
 // popups open button
 export const openPopupProfile = document.querySelector('.profile__edit-button');
 export const openPopupCard = document.querySelector('.profile__add-button');
 
 // popups form
-export const formElementProfole = popupProfile.querySelector('.pop-up__form-profile');
-export const formElementCard = popupCard.querySelector('.pop-up__form-card');
+export const formElementProfole = document.querySelector('.pop-up__form-profile');
+export const formElementCard = document.querySelector('.pop-up__form-card');
 
 // popups form inputs
 export const nameInput = document.querySelector('.pop-up__user-input_info_name');
@@ -25,7 +25,7 @@ export const cardsSection = document.querySelector('.elements');
 
 // Элементы карты 
 export const popupCardImageSelectors = {
-  popupImages : document.querySelector('.popup-img'),
+  popupImages : '.popup-img',
   img : '.pop-up__card-img',
   imgInfo : '.pop-up__img-info',
 }
