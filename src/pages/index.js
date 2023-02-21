@@ -19,7 +19,7 @@ profileFormValidator.enableValidation();
 const popupWithImage = new PopupWithImage(popupCardImageSelectors);
 function openPopupImage(name, link) {
     popupWithImage.openPopup(name, link);
-}
+};
 popupWithImage.setEventListeners();
 
 // Класс Card
