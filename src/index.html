@@ -20,11 +20,18 @@
       <main class="content">
         <section class="profile">
           <div class="profile__card">
-            <img
-              src="<%=require('./images/profile-avatar.jpg')%>"
-              alt="Аватар профиля"
-              class="profile__avatar"
-            />
+            <div class="profile__user-photo">
+              <button
+                type="button"
+                aria-label="Добавить аватар пользователя"
+                class="profile__btn-add-avatar"
+              ></button>
+              <img
+                src="<%=require('./images/profile-avatar.jpg')%>"
+                alt="Аватар профиля"
+                class="profile__avatar"
+              />
+            </div>
             <div class="profile__profile-info">
               <h1 class="profile__name-profile">Жак-Ив Кусто</h1>
               <button
@@ -51,11 +58,14 @@
             />
             <div class="elements__content">
               <h2 class="elements__element-text"></h2>
-              <button
-                class="elements__group"
-                type="button"
-                aria-label="Лайу"
-              ></button>
+              <div class="elements__like">
+                <button
+                  class="elements__group"
+                  type="button"
+                  aria-label="Лайу"
+                ></button>
+                <p class="elements__number-of-likes">0</p>
+              </div>
             </div>
             <button
               type="button"
@@ -155,6 +165,61 @@
               draggable="false"
             >
               Создать
+            </button>
+          </form>
+          <button
+            class="pop-up__exit pop-up__exit-card"
+            type="button"
+            aria-label="выход"
+          ></button>
+        </div>
+      </div>
+      <div class="pop-up popup-delete-card">
+        <div class="pop-up__container">
+          <h2 class="pop-up__title">Вы уверены?</h2>
+          <form
+            class="form pop-up__form pop-up__form-delete"
+            method="get"
+            action="#"
+            name="userInfo"
+            novalidate
+          >
+            <button class="form__button pop-up__save" type="submit">Да</button>
+          </form>
+          <button
+            class="pop-up__exit pop-up__exit-profile"
+            type="button"
+            aria-label="выход"
+          ></button>
+        </div>
+      </div>
+      <div class="pop-up popup-avatar">
+        <div class="pop-up__container">
+          <h2 class="pop-up__title">Обновить аватар</h2>
+          <form
+            class="form pop-up__form pop-up__form-avatar"
+            method="get"
+            action="#"
+            name="userInfo"
+            novalidate
+          >
+            <label class="form__section">
+              <input
+                name="link"
+                type="url"
+                class="form__input pop-up__user-input pop-up__user-input_card_link"
+                placeholder="Ссылка на картинку"
+                required
+              />
+              <span class="form__input-error">Введите адрес сайта.</span>
+            </label>
+            <button
+              class="form__button pop-up__save"
+              id="button-card"
+              type="submit"
+              draggable="false"
+            >
+              Сохранить
             </button>
           </form>
           <button

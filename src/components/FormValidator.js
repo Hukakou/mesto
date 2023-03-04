@@ -51,7 +51,14 @@ export class FormValidator {
         this._buttonElement.classList.add(this._inactiveButtonClass);
     };
 
-    disableSubmitButtonPublic = () => { this._disableSubmitButton() };
+    disableSubmitButtonPublic = () => {
+        this._disableSubmitButton();
+        this._inputList.forEach((inputElement) => {
+            const error = inputElement.parentNode.querySelector(this._inputErrorClass);
+            error.classList.remove(this._errorClass);
+            inputElement.classList.remove(this._popupInputErrorClass);
+        })
+    };
 
     enableValidation = () => {
         this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
