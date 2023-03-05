@@ -106,11 +106,11 @@ function submitEditProfile(data) {
     api.patchProfileInfo(data.name, data.job)
         .then((data) => {
             userInfo.setUserInfo(data);
+            popupEditProfile.closePopup();
         })
         .catch((err) => { console.log(err) })
         .finally(() => {
             popupEditProfile.loadElement(false);
-            popupEditProfile.closePopup();
         })
 }
 
@@ -120,13 +120,13 @@ function submitEditAvatar(data) {
         .then((data => {
             console.log(data);
             userInfo.setUserInfo(data);
+            popupEditAvatar.closePopup();
         }))
         .catch((err) => {
             console.log(err);
         })
         .finally(() => {
             popupEditAvatar.loadElement(false);
-            popupEditAvatar.closePopup()
         })
 }
 
