@@ -51,7 +51,7 @@ export class FormValidator {
         this._buttonElement.classList.add(this._inactiveButtonClass);
     };
 
-    disableSubmitButtonPublic = () => {
+    resetValidation = () => {
         this._disableSubmitButton();
         this._inputList.forEach((inputElement) => {
             const error = inputElement.parentNode.querySelector(this._inputErrorClass);

@@ -10,7 +10,7 @@ export class Card {
         this._openImagePopup = openImagePopup;
         this._requestDelete = requestDelete;
         this._requestLike = requestLike;
-        this._isLiked = data.likes.some((user) => {return user._id === this._userId});
+        this._isLiked = data.likes.some((user) => { return user._id === this._userId });
     };
 
     getCardElement() {
@@ -37,7 +37,7 @@ export class Card {
 
     _setBtnDelete() {
         if (this._cardOwner === this._userId) {
-            this._elementDel.addEventListener('click', () => this._requestDelete(this._id));
+            this._elementDel.addEventListener('click', () => this._requestDelete(this._id, this._visualPartCard));
         } else {
             this._elementDel.remove();
         }
